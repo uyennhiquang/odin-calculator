@@ -1,0 +1,31 @@
+/* Grid classes */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-col-span--2 {
+    grid-column: span 2;
+}
+
+.grid-rows-span--2 {
+    grid-row: span 2;
+}
+
+/* Calculator styling */
+#calculator {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+}
+
+#calculator-display {
+    text-align: right;
+}
+
+#calculator-nums {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#calculator-ops {
+    grid-template-columns: repeat(2, 1fr);
+}
