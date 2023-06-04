@@ -1,35 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
 /* Grid classes */
 .grid {
-    display: grid;
-    gap: 20px;
+  display: grid;
+  gap: 20px;
 }
 
 .grid-col-span--2 {
-    grid-column: span 2;
+  grid-column: span 2;
 }
 
 .grid-rows-span--2 {
-    grid-row: span 2;
+  grid-row: span 2;
+}
+
+/* Flexbox classes */
+.flex {
+  display: flex;
 }
 
 /* Calculator styling */
 #calculator {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 500px;
-    margin: auto;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 500px;
+  margin: auto;
 }
 
-#calculator-display {
-    text-align: right;
-    margin: 0;
-    border-bottom: 1px solid black;
-    height: 20px; /* 特定の高さを設定する */
+#calculator-display,
+#calculator-display-error {
+  font-size: 20px;
+  text-align: right;
+  margin: 0;
+  height: 40px; /* 特定の高さを設定する */
+}
+
+#calculator-display-error {
+  font-size: 15px;
+  height: 20px; /* 特定の高さを設定する */
+  border-bottom: 1px solid black;
+}
+
+#calculator-buttons,
+#calculator-ops {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 #calculator-nums {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-#calculator-ops {
-    grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }

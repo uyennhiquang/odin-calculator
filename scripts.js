@@ -34,17 +34,23 @@ const calc = function (nums, operators) {
     let operator = operators.shift();
     nums.unshift(operate(num1, num2, operator));
   }
-  return nums[0];
+  [answer] = nums;
+
+  console.log(nums);
+  console.log(answer);
+
+  if (!(isNaN(answer)) && answer !== Infinity) return answer;
+  else return 'stinky baka';
 }
 
 // DOM
+const displayValueHTML = document.getElementById("calculator-display");
+const buttons = document.querySelectorAll("button");
+const displayErrorHTML = document.getElementById("calculator-display-error");
+
 let displayValue = "";
 let nums = [];
 let operators = [];
-
-const displayValueHTML = document.getElementById("calculator-display");
-
-const buttons = document.querySelectorAll("button");
 
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function () {
@@ -53,24 +59,45 @@ for (let i = 0; i < buttons.length; i++) {
       case "C":
         displayValue = "";
         displayValueHTML.innerHTML = "";
+        displayErrorHTML.innerHTML = "";
         nums = [];
         break;
 
       case "=":
         let spaceRemovedDisplay = displayValue.replaceAll(" ", "");
-        nums = spaceRemovedDisplay.split(/[+\-*\÷]/);
-
+        nums = spaceRemovedDisplay.split(/[+\-*\÷]/).filter(Boolean);
         operators = [...spaceRemovedDisplay].filter((a) =>
           ["+", "-", "*", "÷"].includes(a)
         );
+        
+        // Check if the last character is an operator sign; operate if it's otherwise
+        if (!["+", "-", "*", "÷"].includes(displayValue[displayValue.length - 1])) {
+            displayValue = String(calc(nums, operators));
 
-        console.log(calc(nums, operators));
-        console.log(nums);
-        console.log(operators);
+            if (!isNaN(displayValue))
+              displayValueHTML.innerHTML = displayValue;
+            else
+              displayErrorHTML.innerHTML = displayValue;
+        }
+        break;
+
+      // Prevents user from entering an operator or decimal if the last character is an operator 
+      case "+": case "-": case "*": case "÷":
+        if (!["+", "-", "*", "÷"].includes(displayValue[displayValue.length - 1])) {
+          displayValue += `${buttonValue}`;
+          displayValueHTML.innerHTML = displayValue;
+        }
+        break;
+
+      case ".":
+        if (!(displayValue[displayValue.length - 1] === ".")) {
+          displayValue += `${buttonValue}`;
+          displayValueHTML.innerHTML = displayValue;
+        }
         break;
 
       default:
-        displayValue += `${buttonValue} `;
+        displayValue += `${buttonValue}`;
         displayValueHTML.innerHTML = displayValue;
     }
   });
