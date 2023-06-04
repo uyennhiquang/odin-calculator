@@ -16,10 +16,14 @@
 #calculator {
     grid-template-columns: repeat(2, 1fr);
     max-width: 500px;
+    margin: auto;
 }
 
 #calculator-display {
     text-align: right;
+    margin: 0;
+    border-bottom: 1px solid black;
+    height: 20px; /* 特定の高さを設定する */
 }
 
 #calculator-nums {
