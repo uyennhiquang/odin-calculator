@@ -1,11 +1,7 @@
-* {
-  box-sizing: border-box;
-}
-
-/* Grid classes */
+ /* Grid classes */
 .grid {
   display: grid;
-  gap: 20px;
+  gap: 7px; 
 }
 
 .grid-col-span--2 {
@@ -33,13 +29,14 @@
   font-size: 20px;
   text-align: right;
   margin: 0;
-  height: 40px; /* 特定の高さを設定する */
+  height: 20px; /* 特定の高さを設定する */
 }
 
 #calculator-display-error {
   font-size: 15px;
   height: 20px; /* 特定の高さを設定する */
   border-bottom: 1px solid black;
+  margin-bottom: 5px;
 }
 
 #calculator-buttons,
@@ -50,3 +47,8 @@
 #calculator-nums {
   grid-template-columns: repeat(3, 1fr);
 }
+
+button {
+  border: 1px solid black;
+  padding: 10px 30px;
+} 
